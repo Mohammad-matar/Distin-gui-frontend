@@ -1,0 +1,9 @@
+.header_img {
+    display: flex;
+    justify-content: center;
+}
+
+.image_header-img {
+    width: 100%;
+}
+

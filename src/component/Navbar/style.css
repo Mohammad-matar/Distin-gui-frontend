@@ -1,0 +1,115 @@
+.header {
+    width: 100%;
+    position: fixed;
+    background-color: black;
+    z-index: 1000;
+  }
+  
+  .header_container {
+    width: 95%;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 0.5rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .header_logo a {
+    display: block;
+  }
+  
+  .logo_img {
+    width: 80px;
+    margin-top: 0.5rem;
+  }
+  
+  .is-active {
+    color: #04aa6d !important;
+  }
+  
+  .main-nav .menubar__button svg {
+    font-size: 27px;
+  }
+  
+  ul.main-menu {
+    display: inline-flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 1rem;
+    padding: 0;
+    color: white;
+    z-index: 7;
+  }
+  
+  ul.main-menu > li.menu-item:first-child {
+    padding-left: 0;
+    margin-left: 0;
+  }
+  
+  .menu-item {
+    line-height: 1.5rem;
+  }
+  
+  li {
+    list-style-type: none;
+  }
+  
+  .menu-item a {
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 40px;
+    position: relative;
+    display: block;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .menu-item:hover > a {
+    color: #04aa6d !important;
+  }
+  
+  @media (max-width: 996px) {
+    ul.main-menu {
+      margin: -1rem;
+    }
+    .main-nav .menubar__button {
+      display: block !important;
+      float: right;
+      background-color: #080808;
+      color: #fff;
+      padding: 0.5rem;
+      border-radius: 5px;
+      cursor: pointer;
+      position: relative;
+      z-index: 10037;
+    }
+    .main-nav .menubar__button:hover {
+      background-color: #04aa6d;
+    }
+    .main-nav .menu-item:hover > a {
+      color: #04aa6d !important;
+    }
+    .main-nav ul.menuq2 {
+      display: block !important;
+      position: absolute;
+      left: 0;
+      z-index: 10007;
+      background-color: black;
+      border-bottom: 3px solid #04aa6d;
+      right: 0;
+      padding-bottom: 17px;
+      padding-top: 57px;
+    }
+    .main-nav .menu-item a {
+      margin: 10px 17px;
+      text-align: center;
+      color: #fff;
+      font-size: 25px;
+    }
+    .main-nav ul.main-menu {
+      display: none;
+    }
+  }
