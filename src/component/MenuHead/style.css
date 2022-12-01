@@ -1,0 +1,17 @@
+.menu__head__container {
+    display: flex;
+    background-color: #f6f9fc;
+    padding: 0 1rem;
+    align-items: center;
+}
+
+
+
+.menu__head__container img {
+    width: 700px;
+    width: 5%;
+    padding: 16px;
+    background-color: #f6f9fc;
+    border-radius: 20px;
+    padding-left: 10px;
+}

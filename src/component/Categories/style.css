@@ -1,0 +1,6 @@
+.categories_container__sx{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}

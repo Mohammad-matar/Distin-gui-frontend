@@ -1,7 +1,8 @@
 .static_info {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .info {
@@ -23,7 +24,7 @@
   color: rgb(117, 138, 117);
 }
 
-.title_menu {
+/* .title_menu {
   margin: 0 auto;
   margin-top: 1rem;
   padding: 0.75rem 3rem;
@@ -35,7 +36,7 @@
   font-weight: bold;
   transition: all 0.3s ease-in-out;
   display: flex;
-}
+} */
 
 .title_menu:hover {
   background-color: rgb(227, 0, 0);

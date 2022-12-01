@@ -1,0 +1,30 @@
+.category_card__container>a {
+    text-decoration: none;
+}
+
+.category_card_icon:hover {
+    background-color: rgb(110, 110, 110);
+    color: white;
+}
+
+.category_card_icon {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    background-color: white;
+    align-items: center;
+    color: black;
+    border-radius: 15px;
+    padding: 0.5rem 3rem;
+}
+
+.category_card_icon img {
+    margin-top: 10px;
+    max-width: 80px;
+    height: 40px;
+}
+
+.category_card_icon p {
+    font-size: 15px;
+    margin: 0;
+}

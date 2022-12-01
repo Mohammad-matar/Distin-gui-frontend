@@ -16,9 +16,7 @@ export default function index() {
                         <h3><FaMapMarkerAlt />Lebanon Beirut 1, Rawshe, RestoCafe</h3>
                         <h3><FaPhoneAlt /> +961 03 000 000 </h3>
                     </div>
-                    <div>
-                        <button className='title_menu'>Main Menu</button>
-                    </div>
+                   
                 </div>
             </div>
 
