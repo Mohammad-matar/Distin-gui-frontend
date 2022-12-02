@@ -5,20 +5,22 @@ import { Helmet } from "react-helmet";
 import './App.css';
 
 function App() {
+
+  
   return (
     <>
-    <Helmet>
+      <Helmet>
         <meta charSet="utf-8" />
         <title>Distin-Gui</title>
         <link rel="canonical" href="http://mysite.com/example" />
         <meta name="description" content="testing icons and titles" />
       </Helmet>
-    <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Home />} />
-    </Routes>
-  </BrowserRouter>
-  </>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 

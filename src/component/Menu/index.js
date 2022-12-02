@@ -4,29 +4,17 @@ import MenuHead from '../MenuHead'
 
 import "./style.css"
 
-export default function Menu() {
+export default function Menu({ data }) {
     return (
         <div className='menu'>
-            <div id='1' className='Menu-Section'>
-                <MenuHead />
-                <Items />
-            </div >
-            <div id='2' className='Menu-Section'>
-                <MenuHead />
-                <Items />
-            </div>
-            <div id='3' className='Menu-Section'>
-                <MenuHead />
-                <Items />
-            </div>
-            <div id='4' className='Menu-Section'>
-                <MenuHead />
-                <Items />
-            </div>
-            <div id='5' className='Menu-Section'>
-                <MenuHead />
-                <Items />
-            </div>
+            {data.map((menu) => {
+                return (
+                    <div id={menu._id} className='Menu-Section' key={menu._id}>
+                        <MenuHead data={menu} />
+                        <Items data={menu.items} />
+                    </div >
+                )
+            })}
         </div>
     )
 }

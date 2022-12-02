@@ -17,6 +17,9 @@
 .item-card-imt img {
     width: 200px;
     border-radius: 10px;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
 }
 
 
@@ -37,6 +40,7 @@
         width: 50%;
     }
 }
+
 @media (max-width:575px) {
     .item__card_container {
         width: 1000%;
