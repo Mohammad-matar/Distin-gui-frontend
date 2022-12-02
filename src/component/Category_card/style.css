@@ -26,3 +26,21 @@
     font-size: 15px;
     margin: 0;
 }
+
+.category_edit_delete_btn {
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+.category_edit_delete_btn button{
+    font-size: 2rem;
+    background-color: transparent;
+    border: 0;
+    transition: all 0.3s ease-in-out;
+}
+.category_edit_btn:hover {
+ color: rgb(0, 235, 0);
+}
+.category_delete_btn:hover {
+    color: red;
+   }

@@ -1,12 +1,11 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from "./Page/Home"
+import Dashboard from './Page/Dashboard';
 import { Helmet } from "react-helmet";
 
 import './App.css';
 
 function App() {
-
-  
   return (
     <>
       <Helmet>
@@ -18,6 +17,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
     </>
