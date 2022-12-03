@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { AiOutlinePlusCircle } from 'react-icons/ai'
-import Item from "../Item"
 import { Box, Modal, TextField, Typography } from "@mui/material";
+import placeholder from "../../images/placeholder.webp"
+import Item from "../Item"
 
 import "./style.css"
+import axios from 'axios';
 
-export default function Items({ data, onSubmit, isDashboard }) {
+export default function Items({ data, onSubmit, isDashboard, category_id }) {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -29,9 +31,53 @@ export default function Items({ data, onSubmit, isDashboard }) {
         if (selectedFile) {
             return photoUrl;
         } else {
-            return `https://matar-api.onrender.com/uploads/`;
+            return placeholder;
         }
     };
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+    const [price, setPrice] = useState("");
+
+    const handleSubmit = () => {
+        let error = null;
+
+        let body = new FormData();
+        body.append("category_id", category_id)
+        if (title) {
+            body.append("title", title);
+        } else {
+            error = "title is required";
+        }
+        if (description) {
+            body.append("description", description);
+        }
+        if (price) {
+            body.append("price", price);
+        }
+
+        if (selectedFile) {
+            body.append("img", selectedFile);
+        }
+
+        if (error !== null) {
+            alert(error);
+        } else {
+            axios
+                .post(`http://localhost:8080/items`, body)
+                .then((res) => {
+                    setTitle("");
+                    setDescription("");
+                    setPrice("");
+                    setSelectedFile(null)
+                    setPhotoUrl("")
+                    onSubmit();
+                    handleClose();
+                    alert("Category added successfully");
+                })
+                .catch((err) => console.log(err));
+        }
+    }
+
     return (
         <div className='Item-Background'>
             {data.map((item) => {
@@ -48,7 +94,7 @@ export default function Items({ data, onSubmit, isDashboard }) {
             >
                 <Box sx={style}>
                     <Typography id="modal-modal-title" variant="h4" component="h2">
-                        Edit Category
+                        Add Item
                     </Typography>
                     <div className='modal_container'>
                         <div className='modal_categories'>
@@ -78,22 +124,25 @@ export default function Items({ data, onSubmit, isDashboard }) {
                                     id="outlined-basic"
                                     label="Title"
                                     variant="outlined"
+                                    onChange={(e)=>setTitle(e.target.value)}
                                 />
                                 <TextField
                                     id="outlined-basic"
                                     label="Description"
                                     variant="outlined"
+                                    onChange={(e) => setDescription(e.target.value)}
                                 />
                                 <TextField
                                     id="outlined-basic"
                                     label="Price"
                                     variant="outlined"
+                                    onChange={(e) => setPrice(e.target.value)}
                                 />
                             </Box>
                         </div>
                     </div>
                     <div>
-                        <button className='categories_modal_submit'>
+                        <button className='categories_modal_submit' onClick={handleSubmit}>
                             Submit
                         </button>
                     </div>

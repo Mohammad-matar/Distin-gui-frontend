@@ -110,7 +110,7 @@ export default function CategoryCard({ data, onSubmit, isDashboard }) {
                         </Typography>
                         <div className='modal_container'>
                             <div className='modal_categories'>
-                                <img src={src()} alt={"item"} />
+                                <img src={src()} alt={"items"} />
                                 {/* upload image */}
                                 <input
                                     type="file"
