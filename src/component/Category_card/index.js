@@ -1,14 +1,76 @@
 import React, { useState } from 'react'
-import axios from 'axios';
-import { Box, Modal, TextField, Typography } from "@mui/material";
 import { AiFillEdit } from "react-icons/ai"
 import { RiDeleteBinLine } from "react-icons/ri"
+import { Box, Modal, TextField, Typography } from "@mui/material";
 import "./style.css"
+import axios from 'axios';
 
 export default function CategoryCard({ data, onSubmit, isDashboard }) {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    const [title, setTitle] = useState(data.title);
+
+    const [selectedFile, setSelectedFile] = useState(null);
+    const [photoUrl, setPhotoUrl] = useState(data.icon);
+
+    const handleFileSelect = (e) => {
+        setSelectedFile(e.target.files[0]);
+        setPhotoUrl(URL.createObjectURL(e.target.files[0]));
+    };
+
+    const src = () => {
+        if (selectedFile) {
+            return photoUrl;
+        } else {
+            return `http://localhost:8080/uploads/${photoUrl}`;
+        };
+    }
+
+    //update
+
+    const handleSubmit = () => {
+        let error = null;
+
+        const body = new FormData();
+        if (title) {
+            body.append("title", title);
+        } else {
+            error = "title is required";
+        }
+        if (selectedFile) {
+            body.append("icon", selectedFile);
+        }
+        if (error !== null) {
+            alert(error);
+        } else {
+            axios
+                .put(`http://localhost:8080/categories/${data._id}`, body)
+                .then((res) => {
+                    alert("Editing Succeeded");
+                    onSubmit();
+                    console.log(res);
+                })
+                .catch((err) => {
+                    alert("Editing Failed");
+                    console.log(err);
+                });
+        }
+
+    };
+
+    //delete
+    const handleDelete = () => {
+        axios
+            .delete(`http://localhost:8080/categories/${data._id}`)
+            .then(res => {
+                alert("Deleted Successfully");
+                onSubmit();
+            })
+            .catch(err => console.log(err))
+    }
+
     const style = {
         position: "absolute",
         top: "50%",
@@ -19,17 +81,6 @@ export default function CategoryCard({ data, onSubmit, isDashboard }) {
         boxShadow: 24,
         p: 4,
     };
-
-    const handleDelete = () => {
-        axios
-            .delete(`http://localhost:8080/categories/${data._id}`)
-            .then(res => {
-                alert("Deleted Successfully");
-                onSubmit();
-            })
-            .catch(err => console.log(err))
-
-    }
     return (
         <>
             <div className='category_card__container'>
@@ -57,14 +108,15 @@ export default function CategoryCard({ data, onSubmit, isDashboard }) {
                         <Typography id="modal-modal-title" variant="h4" component="h2">
                             Edit Category
                         </Typography>
-                        <div>
-                            <div >
-                                <img src="" alt={"item"} />
+                        <div className='modal_container'>
+                            <div className='modal_categories'>
+                                <img src={src()} alt={"item"} />
                                 {/* upload image */}
                                 <input
                                     type="file"
                                     id="image"
                                     hidden
+                                    onChange={handleFileSelect}
                                 />
                                 <label for="image">
                                     Upload
@@ -84,12 +136,14 @@ export default function CategoryCard({ data, onSubmit, isDashboard }) {
                                         id="outlined-basic"
                                         label="Name"
                                         variant="outlined"
+                                        defaultValue={title}
+                                        onChange={(e) => setTitle(e.target.value)}
                                     />
                                 </Box>
                             </div>
                         </div>
                         <div>
-                            <button className='categories_modal_submit'>
+                            <button className='categories_modal_submit' onClick={handleSubmit}>
                                 Submit
                             </button>
                         </div>

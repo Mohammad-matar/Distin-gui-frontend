@@ -40,6 +40,7 @@
 
 .modal_categories img {
     border-radius: 25px;
+    height: 80px;
 }
 
 .categories_modal_submit:hover {

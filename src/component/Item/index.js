@@ -44,7 +44,7 @@ export default function Item({ data, onSubmit, isDashboard }) {
         if (selectedFile) {
             return photoUrl;
         } else {
-            return `https://matar-api.onrender.com/uploads/`;
+            return `http://localhost:8080/uploads/`;
         }
     };
 
