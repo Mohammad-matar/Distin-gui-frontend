@@ -52,3 +52,9 @@
     display: flex;
     justify-content: center;
 }
+
+@media (max-width:438px) {
+    .categories_container__sx {
+        overflow-y: scroll;
+    }
+}
