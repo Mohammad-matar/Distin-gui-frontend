@@ -17,7 +17,7 @@ export default function Home() {
 
   const getall = () => {
     axios
-      .get("http://localhost:8080/categories")
+      .get("https://disting-ui-api.onrender.com/categories")
       .then((res) => {
         setData(res.data.data);
         setIsLoading(false);

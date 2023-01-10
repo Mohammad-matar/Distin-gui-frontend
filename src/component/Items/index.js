@@ -6,11 +6,14 @@ import Item from "../Item"
 
 import "./style.css"
 import axios from 'axios';
+import { useAuth } from '../auth';
 
 export default function Items({ data, onSubmit, isDashboard, category_id }) {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const auth = useAuth();
+    
     const style = {
         position: "absolute",
         top: "50%",
@@ -63,7 +66,11 @@ export default function Items({ data, onSubmit, isDashboard, category_id }) {
             alert(error);
         } else {
             axios
-                .post(`http://localhost:8080/items`, body)
+                .post(`https://disting-ui-api.onrender.com/items`, body, {
+                    headers: {
+                        Authorization: auth.authorizationToken(),
+                    },
+                })
                 .then((res) => {
                     setTitle("");
                     setDescription("");
@@ -124,7 +131,7 @@ export default function Items({ data, onSubmit, isDashboard, category_id }) {
                                     id="outlined-basic"
                                     label="Title"
                                     variant="outlined"
-                                    onChange={(e)=>setTitle(e.target.value)}
+                                    onChange={(e) => setTitle(e.target.value)}
                                 />
                                 <TextField
                                     id="outlined-basic"

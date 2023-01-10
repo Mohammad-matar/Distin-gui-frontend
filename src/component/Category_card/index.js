@@ -4,8 +4,11 @@ import { RiDeleteBinLine } from "react-icons/ri"
 import { Box, Modal, TextField, Typography } from "@mui/material";
 import "./style.css"
 import axios from 'axios';
+import { useAuth } from '../auth';
 
 export default function CategoryCard({ data, onSubmit, isDashboard }) {
+    const auth = useAuth()
+
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -24,7 +27,7 @@ export default function CategoryCard({ data, onSubmit, isDashboard }) {
         if (selectedFile) {
             return photoUrl;
         } else {
-            return `http://localhost:8080/uploads/${photoUrl}`;
+            return `https://disting-ui-api.onrender.com/uploads/${photoUrl}`;
         };
     }
 
@@ -46,7 +49,11 @@ export default function CategoryCard({ data, onSubmit, isDashboard }) {
             alert(error);
         } else {
             axios
-                .put(`http://localhost:8080/categories/${data._id}`, body)
+                .put(`https://disting-ui-api.onrender.com/categories/${data._id}`, body, {
+                    headers: {
+                        Authorization: auth.authorizationToken(),
+                    },
+                })
                 .then((res) => {
                     alert("Editing Succeeded");
                     onSubmit();
@@ -63,7 +70,11 @@ export default function CategoryCard({ data, onSubmit, isDashboard }) {
     //delete
     const handleDelete = () => {
         axios
-            .delete(`http://localhost:8080/categories/${data._id}`)
+            .delete(`https://disting-ui-api.onrender.com/categories/${data._id}`, {
+                headers: {
+                    Authorization: auth.authorizationToken(),
+                },
+            })
             .then(res => {
                 alert("Deleted Successfully");
                 onSubmit();
@@ -86,7 +97,7 @@ export default function CategoryCard({ data, onSubmit, isDashboard }) {
             <div className='category_card__container'>
                 <a href={`#${data._id}`}>
                     <div className='category_card_icon'>
-                        <img src={`http://localhost:8080/uploads/${data.icon}`} alt={"category"} />
+                        <img src={`https://disting-ui-api.onrender.com/uploads/${data.icon}`} alt={"category"} />
                         <p>
                             {data.title}
                         </p>

@@ -1,8 +1,10 @@
 .static_info {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   margin-top: 1rem;
   margin-bottom: 1rem;
+  align-items: center;
 }
 
 .info {
@@ -24,23 +26,18 @@
   color: rgb(117, 138, 117);
 }
 
-/* .title_menu {
-  margin: 0 auto;
-  margin-top: 1rem;
-  padding: 0.75rem 3rem;
-  background-color: rgb(235, 109, 109);
-  color: #fff;
-  border-radius: 4px;
-  border: 0;
-  font-size: 1.25rem;
-  font-weight: bold;
-  transition: all 0.3s ease-in-out;
-  display: flex;
-} */
-
 .title_menu:hover {
   background-color: rgb(227, 0, 0);
   color: white;
+}
+.login_container_staticinfo{
+  padding-top: 15px;
+}
+.login_btn_staticinfo {
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  padding: 5px  10px;
 }
 
 @media (max-width:1000px) {
@@ -58,12 +55,14 @@
     font-size: 25px;
   }
 }
+
 @media (max-width:428px) {
-  .phone__alt h3{
-  font-size: 17px;
+  .phone__alt h3 {
+    font-size: 17px;
   }
 
 }
+
 @media (max-width:400px) {
   .phone__alt {
     width: 111%;

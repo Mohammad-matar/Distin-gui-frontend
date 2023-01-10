@@ -5,12 +5,15 @@ import { AiOutlinePlusCircle } from 'react-icons/ai'
 import placeholder from '../../images/placeholder.webp'
 import "./style.css"
 import axios from 'axios';
+import { useAuth } from '../auth';
 
 export default function Categories({ data, onSubmit, isDashboard = false }) {
 
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const auth = useAuth();
+
     const style = {
         position: "absolute",
         top: "50%",
@@ -58,7 +61,11 @@ export default function Categories({ data, onSubmit, isDashboard = false }) {
             alert(error);
         } else {
             axios
-                .post(`http://localhost:8080/categories`, body)
+                .post(`https://disting-ui-api.onrender.com/categories`, body, {
+                    headers: {
+                        Authorization: auth.authorizationToken(),
+                    },
+                })
                 .then((res) => {
                     setTitle("");
                     setSelectedFile(null)

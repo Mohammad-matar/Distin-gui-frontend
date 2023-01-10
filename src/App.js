@@ -4,10 +4,13 @@ import Dashboard from './Page/Dashboard';
 import { Helmet } from "react-helmet";
 
 import './App.css';
+import { AuthProvider } from './component/auth';
+import Login from './component/Login';
+import { RequireAuth } from './component/RequireAuth';
 
 function App() {
   return (
-    <>
+    <AuthProvider>
       <Helmet>
         <meta charSet="utf-8" />
         <title>Distin-Gui</title>
@@ -16,11 +19,12 @@ function App() {
       </Helmet>
       <BrowserRouter>
         <Routes>
+          <Route path='login' element={<Login />} />
           <Route path="/" element={<Home />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={<RequireAuth><Dashboard /></RequireAuth>} />
         </Routes>
       </BrowserRouter>
-    </>
+    </AuthProvider>
   );
 }
 

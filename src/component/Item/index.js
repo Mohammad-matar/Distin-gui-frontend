@@ -6,12 +6,18 @@ import { Box, Modal, TextField, Typography } from "@mui/material";
 
 import "./style.css"
 import { useState } from "react";
+import { useAuth } from "../auth";
 
 export default function Item({ data, onSubmit, isDashboard }) {
+    const auth = useAuth()
 
     const handleDelete = () => {
         axios
-            .delete(`http://localhost:8080/items/${data._id}`)
+            .delete(`https://disting-ui-api.onrender.com/items/${data._id}`, {
+                headers: {
+                    Authorization: auth.authorizationToken(),
+                },
+            })
             .then(res => {
                 alert("Deleted Successfully");
                 onSubmit();
@@ -41,7 +47,7 @@ export default function Item({ data, onSubmit, isDashboard }) {
         if (selectedFile) {
             return photoUrl;
         } else {
-            return `http://localhost:8080/uploads/${photoUrl}`;
+            return `https://disting-ui-api.onrender.com/uploads/${photoUrl}`;
         }
     };
     //update
@@ -73,7 +79,11 @@ export default function Item({ data, onSubmit, isDashboard }) {
         } else {
             console.log(body)
             axios
-                .put(`http://localhost:8080/items/${data._id}`, body)
+                .put(`https://disting-ui-api.onrender.com/items/${data._id}`, body, {
+                    headers: {
+                        Authorization: auth.authorizationToken(),
+                    },
+                })
                 .then((res) => {
                     alert("Editing Succeeded");
                     onSubmit();
@@ -90,7 +100,7 @@ export default function Item({ data, onSubmit, isDashboard }) {
     return (<>
         <div className='item__card_container'>
             <div className='item-card-imt'>
-                <img src={data.img ? `http://localhost:8080/uploads/${data.img}` : placeholder} alt={"item"} />
+                <img src={data.img ? `https://disting-ui-api.onrender.com/uploads/${data.img}` : placeholder} alt={"item"} />
                 <h2>{data.title}<br /></h2>
                 <p>{data.description && data.description}</p>
 
