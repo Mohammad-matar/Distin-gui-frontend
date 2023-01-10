@@ -18,7 +18,7 @@ export default function Login() {
     };
 
     const handleClick = () => {
-        auth.logout()
+        
         navigate("/")
     }
     const togglePassword = () => {
